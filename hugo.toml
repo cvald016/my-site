@@ -1,0 +1,7 @@
+baseURL = "https://yourdomain.com/"
+languageCode = "en-us"
+title = "Chris Valdemoro"
+
+[params]
+  description = "Personal site & blog"
+  author = "Chris Valdemoro"
