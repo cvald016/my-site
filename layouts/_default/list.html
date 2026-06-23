@@ -1,13 +1,28 @@
 {{ define "main" }}
-<section class="post-archive">
-  <h1>{{ .Title }}</h1>
-  <ul class="post-list">
+<div class="container">
+
+  <div class="listing-header">
+    <p class="eyebrow">{{ .Section | humanize }}</p>
+    <h1>{{ .Title }}</h1>
+    {{ with .Content }}<p class="listing-desc">{{ . }}</p>{{ end }}
+  </div>
+
+  {{ if .Pages }}
+  <div class="post-grid">
     {{ range .Pages }}
-    <li>
-      <span class="post-date">{{ .Date.Format "Jan 2, 2006" }}</span>
-      <a href="{{ .RelPermalink }}">{{ .Title }}</a>
-    </li>
+    <a href="{{ .RelPermalink }}" class="post-card">
+      <div class="post-card-meta">
+        <span class="post-card-date">{{ .Date.Format "Jan 2, 2006" }}</span>
+      </div>
+      <h2>{{ .Title }}</h2>
+      {{ with .Summary }}<p>{{ . }}</p>{{ end }}
+      <span class="post-card-cta">Read →</span>
+    </a>
     {{ end }}
-  </ul>
-</section>
+  </div>
+  {{ else }}
+  <p style="color: var(--mid); padding: 4rem 0;">Nothing here yet. Check back soon.</p>
+  {{ end }}
+
+</div>
 {{ end }}

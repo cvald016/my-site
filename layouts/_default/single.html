@@ -1,11 +1,18 @@
 {{ define "main" }}
-<article class="post">
-  <header class="post-header">
+<div class="container">
+
+  <div class="post-header">
+    <div class="post-eyebrow">
+      <a href="/{{ .Section }}/" class="post-section-tag">{{ .Section | humanize }}</a>
+      <time class="post-date" datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "January 2, 2006" }}</time>
+    </div>
     <h1>{{ .Title }}</h1>
-    <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "January 2, 2006" }}</time>
-  </header>
-  <div class="post-content">
+    {{ with .Params.lede }}<p class="post-lede">{{ . }}</p>{{ end }}
+  </div>
+
+  <div class="post-body">
     {{ .Content }}
   </div>
-</article>
+
+</div>
 {{ end }}

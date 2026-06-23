@@ -1,25 +1,58 @@
 {{ define "main" }}
-<section class="home">
-  <div class="intro">
-    {{ .Content }}
-  </div>
 
-  {{ $posts := where .Site.RegularPages "Section" "posts" }}
-  {{ if $posts }}
-  <section class="recent-posts">
-    <h2>Recent Writing</h2>
-    <ul class="post-list">
-      {{ range first 5 $posts }}
-      <li>
-        <span class="post-date">{{ .Date.Format "Jan 2, 2006" }}</span>
-        <a href="{{ .RelPermalink }}">{{ .Title }}</a>
-      </li>
-      {{ end }}
-    </ul>
-    {{ if gt (len $posts) 5 }}
-    <a href="/posts/" class="all-posts">All posts →</a>
-    {{ end }}
-  </section>
-  {{ end }}
+<!-- HERO -->
+<section class="home-hero">
+  <div class="container">
+    <p class="eyebrow">Sales Engineer · Outdoorsman · Writer</p>
+    <h1>I close complex SaaS deals by day and sleep on the ground in national parks by weekend.</h1>
+    <p class="intro-text">
+      This is where both worlds live. <strong>Sales strategy, technical GTM thinking, and honest startup commentary</strong> sit next to trip reports, gear opinions, and the occasional wilderness debrief.
+    </p>
+    <a href="/collaborate/" class="hero-cta">Work with me →</a>
+  </div>
 </section>
+
+<!-- DUALITY -->
+<section class="home-duality">
+  <div class="container">
+    <div class="duality-grid">
+      <div class="duality-col">
+        <span class="tag">Sales & Tech</span>
+        <h2>Sales engineering, SaaS strategy, and the mechanics of winning deals.</h2>
+        <p>Years in the trenches doing presales, building demo environments, navigating procurement from hell, and thinking hard about why some pipelines convert and others die quietly in stage 3.</p>
+        <a href="/sales-tech/" class="duality-link">Read the writing →</a>
+      </div>
+      <div class="duality-col">
+        <span class="tag">Outdoors</span>
+        <h2>Backpacking, national parks, and going places with bad cell service.</h2>
+        <p>Trip reports, gear that actually holds up, and the kind of routes that aren't on the first page of Google. Most of it is in the Sierra Nevada. Some of it is embarrassingly hard. All of it is worth it.</p>
+        <a href="/outdoors/" class="duality-link">Read the writing →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RECENT POSTS -->
+{{ $salestech := where .Site.RegularPages "Section" "sales-tech" }}
+{{ $outdoors := where .Site.RegularPages "Section" "outdoors" }}
+{{ $all := union $salestech $outdoors }}
+{{ $recent := first 6 (sort $all "Date" "desc") }}
+
+{{ if $recent }}
+<section class="home-recent">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-label">Recent Writing</span>
+    </div>
+    {{ range $recent }}
+    <a href="{{ .RelPermalink }}" class="post-row">
+      <span class="post-row-date">{{ .Date.Format "Jan 2, 2006" }}</span>
+      <span class="post-row-section">{{ .Section }}</span>
+      <span class="post-row-title">{{ .Title }}</span>
+    </a>
+    {{ end }}
+  </div>
+</section>
+{{ end }}
+
 {{ end }}

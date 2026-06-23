@@ -1,178 +1,699 @@
-/* Reset & base */
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+/* ============================================
+   CHRIS VALDEMORO — DESIGN SYSTEM
+   Palette: #111111 / #888888 / #f4f4f4 / #ffffff
+   ============================================ */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
 :root {
-  --text: #1a1a1a;
-  --muted: #666;
-  --accent: #0066cc;
-  --bg: #fff;
-  --max-width: 680px;
+  --black:      #111111;
+  --white:      #ffffff;
+  --light:      #f4f4f4;
+  --mid:        #888888;
+  --border:     #e2e2e2;
+  --max-width:  1080px;
+  --font:       'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --font-mono:  'SF Mono', 'Fira Code', 'Courier New', monospace;
+  --nav-height: 64px;
 }
+
+html { font-size: 16px; scroll-behavior: smooth; }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  font-size: 18px;
-  line-height: 1.7;
-  color: var(--text);
-  background: var(--bg);
+  font-family: var(--font);
+  background: var(--white);
+  color: var(--black);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
 }
 
-/* Layout */
-header, main, footer {
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; display: block; }
+
+/* ============================================
+   NAVIGATION
+   ============================================ */
+
+.site-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  height: var(--nav-height);
+  background: var(--white);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+}
+
+.nav-inner {
   max-width: var(--max-width);
+  width: 100%;
   margin: 0 auto;
-  padding: 0 1.5rem;
-}
-
-/* Nav */
-header {
-  padding-top: 2rem;
-  padding-bottom: 2rem;
-}
-
-nav {
+  padding: 0 2rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.site-title {
-  font-weight: 700;
-  font-size: 1.1rem;
-  text-decoration: none;
-  color: var(--text);
-}
-
-.nav-links a {
-  margin-left: 1.5rem;
-  color: var(--muted);
-  text-decoration: none;
+.nav-logo {
   font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--black);
 }
 
-.nav-links a:hover { color: var(--text); }
-
-/* Main */
-main {
-  min-height: calc(100vh - 200px);
-  padding-top: 1rem;
-  padding-bottom: 4rem;
-}
-
-/* Home intro */
-.intro {
-  margin-bottom: 3rem;
-}
-
-.intro h1 {
-  font-size: 2rem;
-  margin-bottom: 0.75rem;
-}
-
-.intro p {
-  color: var(--muted);
-  font-size: 1.05rem;
-}
-
-/* Post list */
-h2 {
-  font-size: 1rem;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--muted);
-  margin-bottom: 1rem;
-}
-
-.post-list {
+.nav-links {
+  display: flex;
+  gap: 2.5rem;
   list-style: none;
 }
 
-.post-list li {
-  display: flex;
-  gap: 1.5rem;
-  padding: 0.6rem 0;
-  border-bottom: 1px solid #f0f0f0;
-  align-items: baseline;
+.nav-links a {
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--mid);
+  transition: color 0.15s;
 }
 
-.post-list li:first-child { border-top: 1px solid #f0f0f0; }
-
-.post-date {
-  font-size: 0.85rem;
-  color: var(--muted);
-  white-space: nowrap;
-  min-width: 100px;
+.nav-links a:hover,
+.nav-links a.active {
+  color: var(--black);
 }
 
-.post-list a {
-  color: var(--text);
-  text-decoration: none;
+/* ============================================
+   LAYOUT WRAPPER
+   ============================================ */
+
+.page-wrapper {
+  padding-top: var(--nav-height);
+  min-height: 100vh;
 }
 
-.post-list a:hover { color: var(--accent); }
-
-.all-posts {
-  display: inline-block;
-  margin-top: 1rem;
-  color: var(--accent);
-  text-decoration: none;
-  font-size: 0.9rem;
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 2rem;
 }
 
-/* Post archive */
-.post-archive h1 {
-  font-size: 1.5rem;
+/* ============================================
+   HOMEPAGE
+   ============================================ */
+
+.home-hero {
+  padding: 7rem 0 5rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.home-hero .eyebrow {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--mid);
   margin-bottom: 1.5rem;
 }
 
-/* Single post */
-.post-header {
+.home-hero h1 {
+  font-size: clamp(2.2rem, 5vw, 3.8rem);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: var(--black);
+  max-width: 820px;
+  margin-bottom: 2rem;
+}
+
+.home-hero .intro-text {
+  font-size: 1.15rem;
+  color: var(--mid);
+  max-width: 560px;
+  line-height: 1.75;
   margin-bottom: 2.5rem;
 }
 
-.post-header h1 {
-  font-size: 2rem;
-  margin-bottom: 0.5rem;
+.home-hero .intro-text strong {
+  color: var(--black);
+  font-weight: 600;
+}
+
+.hero-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--black);
+  border-bottom: 1.5px solid var(--black);
+  padding-bottom: 2px;
+  transition: opacity 0.15s;
+}
+
+.hero-cta:hover { opacity: 0.5; }
+
+/* Duality section */
+.home-duality {
+  padding: 5rem 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.duality-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+}
+
+.duality-col {
+  padding: 3rem;
+}
+
+.duality-col:first-child {
+  border-right: 1px solid var(--border);
+}
+
+.duality-col .tag {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--white);
+  background: var(--black);
+  padding: 0.3rem 0.6rem;
+  margin-bottom: 1.5rem;
+}
+
+.duality-col h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  margin-bottom: 1rem;
   line-height: 1.3;
 }
 
-.post-header time {
-  color: var(--muted);
-  font-size: 0.9rem;
+.duality-col p {
+  font-size: 0.95rem;
+  color: var(--mid);
+  line-height: 1.75;
+  margin-bottom: 1.5rem;
 }
 
-.post-content h2 { font-size: 1.4rem; margin: 2rem 0 0.75rem; text-transform: none; letter-spacing: 0; color: var(--text); }
-.post-content h3 { font-size: 1.15rem; margin: 1.5rem 0 0.5rem; }
-.post-content p { margin-bottom: 1.25rem; }
-.post-content a { color: var(--accent); }
-.post-content ul, .post-content ol { margin: 0 0 1.25rem 1.5rem; }
-.post-content li { margin-bottom: 0.4rem; }
-.post-content blockquote {
-  border-left: 3px solid #e0e0e0;
-  padding-left: 1.25rem;
-  margin: 1.5rem 0;
-  color: var(--muted);
-  font-style: italic;
+.duality-link {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--black);
+  border-bottom: 1px solid var(--black);
+  padding-bottom: 1px;
+  transition: opacity 0.15s;
 }
-.post-content code {
-  background: #f5f5f5;
-  padding: 0.15em 0.4em;
-  border-radius: 3px;
-  font-size: 0.88em;
+
+.duality-link:hover { opacity: 0.5; }
+
+/* Recent posts on homepage */
+.home-recent {
+  padding: 4rem 0;
 }
-.post-content pre {
-  background: #f5f5f5;
-  padding: 1rem 1.25rem;
-  border-radius: 6px;
-  overflow-x: auto;
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.section-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--black);
+}
+
+.section-link {
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--mid);
+  border-bottom: 1px solid var(--mid);
+  padding-bottom: 1px;
+  transition: color 0.15s, border-color 0.15s;
+}
+
+.section-link:hover {
+  color: var(--black);
+  border-color: var(--black);
+}
+
+/* ============================================
+   BLOG LISTING
+   ============================================ */
+
+.listing-header {
+  padding: 5rem 0 3rem;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 4rem;
+}
+
+.listing-header .eyebrow {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--mid);
+  margin-bottom: 1rem;
+}
+
+.listing-header h1 {
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  margin-bottom: 0.75rem;
+}
+
+.listing-header .listing-desc {
+  font-size: 1rem;
+  color: var(--mid);
+  max-width: 480px;
+}
+
+.post-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  margin-bottom: 5rem;
+}
+
+.post-card {
+  background: var(--white);
+  padding: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  transition: background 0.15s;
+}
+
+.post-card:hover {
+  background: var(--light);
+}
+
+.post-card-meta {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.post-card-date {
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  color: var(--mid);
+}
+
+.post-card h2 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+  color: var(--black);
+}
+
+.post-card p {
+  font-size: 0.9rem;
+  color: var(--mid);
+  line-height: 1.65;
+  flex: 1;
+}
+
+.post-card-cta {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--black);
+  border-bottom: 1px solid var(--black);
+  padding-bottom: 1px;
+  align-self: flex-start;
+  transition: opacity 0.15s;
+}
+
+.post-card:hover .post-card-cta { opacity: 0.5; }
+
+/* ============================================
+   SINGLE POST
+   ============================================ */
+
+.post-header {
+  padding: 5rem 0 3.5rem;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 4rem;
+  max-width: 720px;
+}
+
+.post-header .post-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.post-section-tag {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--white);
+  background: var(--black);
+  padding: 0.25rem 0.55rem;
+}
+
+.post-date {
+  font-size: 0.78rem;
+  color: var(--mid);
+  letter-spacing: 0.04em;
+}
+
+.post-header h1 {
+  font-size: clamp(1.9rem, 4vw, 2.8rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
   margin-bottom: 1.25rem;
 }
-.post-content pre code { background: none; padding: 0; }
 
-/* Footer */
-footer {
-  padding: 2rem 1.5rem;
-  color: var(--muted);
+.post-header .post-lede {
+  font-size: 1.1rem;
+  color: var(--mid);
+  line-height: 1.7;
+}
+
+.post-body {
+  max-width: 680px;
+  padding-bottom: 6rem;
+}
+
+.post-body p {
+  font-size: 1.05rem;
+  line-height: 1.8;
+  margin-bottom: 1.5rem;
+  color: var(--black);
+}
+
+.post-body h2 {
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  margin: 3rem 0 1rem;
+  color: var(--black);
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+
+.post-body h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin: 2rem 0 0.75rem;
+  color: var(--black);
+}
+
+.post-body strong {
+  font-weight: 700;
+  color: var(--black);
+}
+
+.post-body em { font-style: italic; }
+
+.post-body a {
+  color: var(--black);
+  border-bottom: 1px solid var(--black);
+  padding-bottom: 1px;
+  transition: opacity 0.15s;
+}
+
+.post-body a:hover { opacity: 0.5; }
+
+.post-body ul, .post-body ol {
+  margin: 0 0 1.5rem 1.5rem;
+}
+
+.post-body li {
+  font-size: 1.05rem;
+  line-height: 1.75;
+  margin-bottom: 0.5rem;
+}
+
+.post-body blockquote {
+  border-left: 3px solid var(--black);
+  padding: 0.75rem 0 0.75rem 1.5rem;
+  margin: 2rem 0;
+}
+
+.post-body blockquote p {
+  font-size: 1.15rem;
+  font-style: italic;
+  color: var(--black);
+  margin: 0;
+}
+
+.post-body code {
+  font-family: var(--font-mono);
+  font-size: 0.85em;
+  background: var(--light);
+  padding: 0.15em 0.4em;
+}
+
+.post-body pre {
+  background: var(--black);
+  color: var(--light);
+  padding: 1.5rem;
+  overflow-x: auto;
+  margin-bottom: 1.5rem;
+}
+
+.post-body pre code {
+  background: none;
+  padding: 0;
+  color: inherit;
+}
+
+/* Callout box */
+.callout {
+  border: 1px solid var(--black);
+  padding: 1.5rem 2rem;
+  margin: 2.5rem 0;
+  background: var(--light);
+}
+
+.callout strong {
+  display: block;
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+
+/* ============================================
+   COLLABORATE PAGE
+   ============================================ */
+
+.collaborate-hero {
+  padding: 7rem 0 5rem;
+  border-bottom: 1px solid var(--border);
+  max-width: 720px;
+}
+
+.collaborate-hero h1 {
+  font-size: clamp(2rem, 4.5vw, 3.2rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  margin-bottom: 1.5rem;
+}
+
+.collaborate-hero p {
+  font-size: 1.1rem;
+  color: var(--mid);
+  line-height: 1.75;
+  margin-bottom: 1rem;
+}
+
+.collaborate-options {
+  padding: 4rem 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  margin-bottom: 4rem;
+}
+
+.collaborate-option {
+  background: var(--white);
+  padding: 2.5rem;
+}
+
+.collaborate-option .num {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--mid);
+  margin-bottom: 1rem;
+}
+
+.collaborate-option h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+}
+
+.collaborate-option p {
+  font-size: 0.88rem;
+  color: var(--mid);
+  line-height: 1.65;
+}
+
+.email-cta {
+  padding: 3rem 0 6rem;
+}
+
+.email-cta p {
   font-size: 0.85rem;
-  border-top: 1px solid #f0f0f0;
+  color: var(--mid);
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 500;
+}
+
+.email-cta a {
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--black);
+  border-bottom: 2px solid var(--black);
+  padding-bottom: 2px;
+  transition: opacity 0.15s;
+}
+
+.email-cta a:hover { opacity: 0.45; }
+
+/* ============================================
+   POST ROW (homepage recent posts)
+   ============================================ */
+
+.post-row {
+  display: flex;
+  align-items: baseline;
+  gap: 2rem;
+  padding: 1.25rem 0;
+  border-bottom: 1px solid var(--border);
+  transition: opacity 0.15s;
+}
+
+.post-row:hover { opacity: 0.55; }
+
+.post-row-date {
+  font-size: 0.75rem;
+  color: var(--mid);
+  min-width: 100px;
+  letter-spacing: 0.03em;
+}
+
+.post-row-section {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--white);
+  background: var(--black);
+  padding: 0.2rem 0.45rem;
+  min-width: 80px;
+  text-align: center;
+}
+
+.post-row-title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--black);
+  flex: 1;
+}
+
+/* ============================================
+   FOOTER
+   ============================================ */
+
+.site-footer {
+  border-top: 1px solid var(--border);
+  padding: 2rem 0;
+  background: var(--white);
+}
+
+.footer-inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-inner p {
+  font-size: 0.75rem;
+  color: var(--mid);
+  letter-spacing: 0.03em;
+}
+
+.footer-email {
+  font-size: 0.75rem;
+  color: var(--mid);
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 1px;
+  transition: color 0.15s, border-color 0.15s;
+}
+
+.footer-email:hover {
+  color: var(--black);
+  border-color: var(--black);
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+@media (max-width: 768px) {
+  .nav-links { gap: 1.25rem; }
+  .nav-links a { font-size: 0.72rem; }
+
+  .duality-grid { grid-template-columns: 1fr; }
+  .duality-col:first-child {
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .post-grid { grid-template-columns: 1fr; }
+  .collaborate-options { grid-template-columns: 1fr; }
+
+  .post-row { flex-wrap: wrap; gap: 0.5rem; }
+  .post-row-date { min-width: auto; }
+}
+
+@media (max-width: 520px) {
+  .nav-logo { display: none; }
+  .nav-links { gap: 1rem; }
 }
